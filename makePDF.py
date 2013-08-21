@@ -135,7 +135,11 @@ class CmdThread ( threading.Thread ):
 		# 121101 -- moved splitting and decoding logic to parseTeXlog, where it belongs.
 		
 		# Note to self: need to think whether we don't want to codecs.open this, too...
-		data = open(self.caller.tex_base + ".log", 'rb').read()		
+		
+		base_path = os.path.dirname(self.caller.tex_base)
+		file_name = os.path.basename(self.caller.tex_base)
+		data = open(base_path + "/output/" + file_name + ".log", 'rb').read()		
+		#data = open(self.caller.tex_base + ".log", 'rb').read()		
 
 		errors = []
 		warnings = []
